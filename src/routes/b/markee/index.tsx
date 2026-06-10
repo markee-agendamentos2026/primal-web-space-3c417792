@@ -54,53 +54,48 @@ function MarkeeHome() {
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
           <div className="flex items-center gap-4 group cursor-pointer">
             <div className="relative flex h-16 w-16 items-center justify-center">
-              {/* Main AI Sphere - Central Body */}
-              <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-black border border-white/20 shadow-[0_0_20px_rgba(var(--primary-rgb),0.4)] z-20">
-                {/* AI Eyes / Face */}
-                <div className="flex flex-col items-center gap-1">
-                  <div className="flex gap-2">
-                    <motion.div 
-                      className="h-1 w-2 rounded-full bg-primary shadow-[0_0_8px_var(--primary)]"
-                      animate={{ scaleY: [1, 0.1, 1] }}
-                      transition={{ duration: 4, repeat: Infinity, times: [0, 0.05, 0.1] }}
-                    />
-                    <motion.div 
-                      className="h-1 w-2 rounded-full bg-primary shadow-[0_0_8px_var(--primary)]"
-                      animate={{ scaleY: [1, 0.1, 1] }}
-                      transition={{ duration: 4, repeat: Infinity, times: [0, 0.05, 0.1] }}
-                    />
-                  </div>
+              {/* Central Core Sphere */}
+              <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-black border border-white/20 shadow-[0_0_20px_rgba(var(--primary-rgb),0.6)] z-20">
+                {/* AI Eyes - Living Face */}
+                <div className="flex gap-1.5">
+                  <motion.div 
+                    className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px_var(--primary)]"
+                    animate={{ scaleY: [1, 0.1, 1] }}
+                    transition={{ duration: 4, repeat: Infinity, times: [0, 0.05, 0.1] }}
+                  />
+                  <motion.div 
+                    className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px_var(--primary)]"
+                    animate={{ scaleY: [1, 0.1, 1] }}
+                    transition={{ duration: 4, repeat: Infinity, times: [0, 0.05, 0.1] }}
+                  />
                 </div>
               </div>
 
-              {/* Orbital Rings - Concentric and Intersecting */}
+              {/* Orbital Arcs - Dynamic Motion */}
               <motion.div 
-                className="absolute h-14 w-14 rounded-full border border-primary/40"
-                animate={{ rotate: 360, scale: [1, 1.05, 1] }}
-                transition={{ rotate: { duration: 8, repeat: Infinity, ease: "linear" }, scale: { duration: 2, repeat: Infinity } }}
+                className="absolute inset-0 rounded-full border-[1.5px] border-primary/40 border-t-transparent border-l-transparent"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
               />
               <motion.div 
-                className="absolute h-16 w-16 rounded-full border border-blue-500/20"
-                style={{ rotateX: "60deg", rotateY: "30deg" }}
-                animate={{ rotateZ: 360 }}
-                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-1 rounded-full border-[1.5px] border-primary/30 border-b-transparent border-r-transparent"
+                animate={{ rotate: -360 }}
+                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
               />
               <motion.div 
-                className="absolute h-16 w-16 rounded-full border border-purple-500/20"
-                style={{ rotateX: "30deg", rotateY: "60deg" }}
-                animate={{ rotateZ: -360 }}
-                transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-2 rounded-full border border-white/10"
               />
 
-              {/* Power Particles / Aura */}
-              <div className="absolute inset-0 bg-primary/10 blur-2xl rounded-full animate-pulse" />
+              {/* Outer Glow / Aura */}
+              <div className="absolute inset-0 bg-primary/5 blur-xl rounded-full animate-pulse" />
             </div>
-            <div className="flex flex-col">
-              <span className="text-2xl font-black tracking-tighter bg-gradient-to-r from-white via-white to-primary bg-clip-text text-transparent italic leading-none">
+            
+            <div className="flex items-baseline gap-2">
+              <span className="text-3xl font-black tracking-tighter text-white italic leading-none">
                 Markee
               </span>
-              <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary/80 leading-none mt-1.5 ml-0.5">
-                AI Evolution
+              <span className="text-xl font-bold tracking-tight text-white/70 italic leading-none">
+                Agendamentos
               </span>
             </div>
           </div>
