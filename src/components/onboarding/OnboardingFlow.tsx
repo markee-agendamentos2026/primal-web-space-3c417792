@@ -6,14 +6,13 @@ import { Label } from "@/components/ui/label";
 import { ChevronRight, ChevronLeft, Check, Loader2 } from "lucide-react";
 import { useNavigate } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 
 type Step = "personal" | "business" | "branding" | "summary" | "status";
 
 export function OnboardingFlow() {
   const [step, setStep] = useState<Step>("personal");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
   const navigate = useNavigate();
   
   const [formData, setFormData] = useState({
@@ -47,13 +46,10 @@ export function OnboardingFlow() {
 
       if (error) throw error;
 
+      toast.success("Cadastro realizado com sucesso!");
       setStep("status");
     } catch (error: any) {
-      toast({
-        title: "Erro ao salvar cadastro",
-        description: error.message || "Ocorreu um erro inesperado.",
-        variant: "destructive",
-      });
+      toast.error(error.message || "Ocorreu um erro inesperado.");
     } finally {
       setIsSubmitting(false);
     }
