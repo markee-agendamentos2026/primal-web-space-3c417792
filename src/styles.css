@@ -1,0 +1,447 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-glow: var(--primary-glow);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-glass: var(--glass);
+  --color-glass-border: var(--glass-border);
+  --font-display: "Playfair Display", serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 1.25rem;
+  --background: oklch(0.14 0.01 60);
+  --foreground: oklch(0.97 0.01 80);
+  --card: oklch(0.18 0.012 60);
+  --card-foreground: oklch(0.97 0.01 80);
+  --popover: oklch(0.16 0.012 60);
+  --popover-foreground: oklch(0.97 0.01 80);
+  --primary: oklch(0.78 0.14 65);
+  --primary-foreground: oklch(0.15 0.01 60);
+  --primary-glow: oklch(0.86 0.16 75);
+  --secondary: oklch(0.22 0.01 60);
+  --secondary-foreground: oklch(0.97 0.01 80);
+  --muted: oklch(0.24 0.008 60);
+  --muted-foreground: oklch(0.68 0.02 70);
+  --accent: oklch(0.78 0.14 65);
+  --accent-foreground: oklch(0.15 0.01 60);
+  --destructive: oklch(0.62 0.21 25);
+  --destructive-foreground: oklch(0.98 0.01 80);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 8%);
+  --ring: oklch(0.78 0.14 65);
+  --glass: oklch(1 0 0 / 6%);
+  --glass-border: oklch(1 0 0 / 12%);
+  --gradient-primary: linear-gradient(135deg, oklch(0.78 0.14 65), oklch(0.86 0.16 75));
+  --gradient-overlay: linear-gradient(180deg, oklch(0.10 0.01 60 / 0.55) 0%, oklch(0.10 0.01 60 / 0.92) 100%);
+  --shadow-glow: 0 12px 40px -8px oklch(0.78 0.14 65 / 0.45);
+  --shadow-card: 0 20px 60px -20px oklch(0 0 0 / 0.6);
+}
+
+.dark {
+  --background: oklch(0.14 0.01 60);
+  --foreground: oklch(0.97 0.01 80);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html, body, #root {
+    min-height: 100vh;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  .app-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+    filter: blur(18px) saturate(1.1);
+    transform: scale(1.1);
+  }
+  .app-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: var(--gradient-overlay);
+  }
+  .glass {
+    background: var(--glass);
+    backdrop-filter: blur(24px) saturate(1.2);
+    -webkit-backdrop-filter: blur(24px) saturate(1.2);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-2xl);
+  }
+  .glass-strong {
+    background: oklch(0.14 0.01 60 / 0.7);
+    backdrop-filter: blur(28px) saturate(1.3);
+    -webkit-backdrop-filter: blur(28px) saturate(1.3);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-2xl);
+  }
+  .btn-primary {
+    background: var(--gradient-primary);
+    color: var(--primary-foreground);
+    box-shadow: var(--shadow-glow);
+    border-radius: 9999px;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn-primary:hover { transform: translateY(-2px); }
+  .btn-primary:active { transform: translateY(0); }
+  .btn-ghost-glass {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    color: var(--foreground);
+    border-radius: 9999px;
+    transition: background 0.2s ease;
+  }
+  .btn-ghost-glass:hover { background: oklch(1 0 0 / 0.12); }
+  .input-glass {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    color: var(--foreground);
+    border-radius: 1rem;
+    padding: 1rem 1rem 1rem 3rem;
+    width: 100%;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+  }
+  .input-glass:focus {
+    outline: none;
+    border-color: var(--primary);
+  }
+  .input-glass::placeholder { color: var(--muted-foreground); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fade-up 0.5s ease both; }
+
+@layer utilities {
+  .scrollbar-none { scrollbar-width: none; -ms-overflow-style: none; }
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+}
+
+/* Thin sophisticated horizontal scrollbar (desktop only) */
+.h-scrollbar { display: none; }
+@media (min-width: 768px) {
+  .h-scrollbar {
+    display: block;
+    height: 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) transparent;
+  }
+  .h-scrollbar::-webkit-scrollbar { height: 6px; }
+  .h-scrollbar::-webkit-scrollbar-track { background: transparent; }
+  .h-scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, var(--primary), var(--primary-glow));
+    border-radius: 999px;
+    opacity: 0.7;
+  }
+  .h-scrollbar::-webkit-scrollbar-thumb:hover { opacity: 1; }
+}
+
+.progress-track { height: 4px; background: var(--glass); border-radius: 999px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--gradient-primary); border-radius: 999px; transition: width 0.4s ease; box-shadow: var(--shadow-glow); }
+
+.glow-promo {
+  box-shadow: 0 0 0 1px oklch(0.86 0.16 75 / 0.45), 0 8px 30px -8px oklch(0.86 0.16 75 / 0.55);
+}
+
+.input-glass-sm { background: var(--glass); border: 1px solid var(--glass-border); color: var(--foreground); border-radius: 1rem; padding: 0.85rem 1rem; width: 100%; font-size: 0.95rem; }
+.input-glass-sm:focus { outline: none; border-color: var(--primary); }
+
+/* Força contraste legível nas opções de selects nativos no desktop */
+select option,
+select optgroup {
+  background: var(--color-background);
+  color: var(--color-foreground);
+}
+
+
+/* ============================================================
+   Markee onboarding theme (escopo: .markee-theme)
+   Site exclusivo da Markee em /b/markee/* — não afeta tenants.
+   ============================================================ */
+.markee-theme {
+  --background: oklch(0.16 0.03 270);
+  --foreground: oklch(0.97 0.01 280);
+  --card: oklch(0.20 0.04 275 / 0.6);
+  --card-foreground: oklch(0.97 0.01 280);
+  --popover: oklch(0.18 0.04 275);
+  --popover-foreground: oklch(0.97 0.01 280);
+  --primary: oklch(0.78 0.16 295);
+  --primary-foreground: oklch(0.14 0.02 280);
+  --primary-glow: oklch(0.82 0.18 220);
+  --secondary: oklch(0.24 0.04 275);
+  --secondary-foreground: oklch(0.97 0.01 280);
+  --muted: oklch(0.22 0.03 275);
+  --muted-foreground: oklch(0.74 0.03 280);
+  --accent: oklch(0.78 0.16 295);
+  --accent-foreground: oklch(0.14 0.02 280);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 10%);
+  --ring: oklch(0.78 0.16 295);
+  --glass: oklch(1 0 0 / 6%);
+  --glass-border: oklch(1 0 0 / 14%);
+  --gradient-primary: linear-gradient(135deg, oklch(0.78 0.16 295), oklch(0.82 0.18 220));
+  --shadow-glow: 0 12px 40px -12px oklch(0.78 0.16 295 / 0.55);
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 16.5px;
+  color: var(--foreground);
+  background: var(--background);
+  min-height: 100svh;
+}
+.markee-theme .markee-display {
+  font-family: "Space Grotesk", "Inter", system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+.markee-theme .markee-glass {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(14px);
+  border-radius: 1.25rem;
+}
+.markee-theme .markee-grad-text {
+  background: linear-gradient(135deg, oklch(0.92 0.10 295), oklch(0.90 0.12 220));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.markee-theme .markee-cta {
+  background: var(--gradient-primary);
+  color: var(--primary-foreground);
+  border-radius: 999px;
+  padding: 0.95rem 1.6rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-glow);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+.markee-theme .markee-cta:hover { transform: translateY(-1px); }
+.markee-theme .markee-ghost {
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  color: var(--foreground);
+  border-radius: 999px;
+  padding: 0.9rem 1.5rem;
+  font-weight: 500;
+  transition: background 0.15s ease;
+}
+.markee-theme .markee-ghost:hover { background: var(--glass); }
+.markee-theme .markee-input {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 0.9rem;
+  padding: 0.85rem 1rem;
+  width: 100%;
+  font-size: 1rem;
+  color: var(--foreground);
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.markee-theme .markee-input:focus { border-color: var(--primary); }
+.markee-theme .markee-input::placeholder { color: oklch(0.65 0.02 280); }
+
+@keyframes markee-dot {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+.markee-dot { display: inline-block; width: 6px; height: 6px; border-radius: 999px; background: currentColor; margin: 0 2px; animation: markee-dot 1.2s infinite; }
+.markee-dot:nth-child(2) { animation-delay: 0.15s; }
+.markee-dot:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes markee-orbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.markee-orbit { animation: markee-orbit 24s linear infinite; }
+
+/* Hide scrollbar but keep functionality (for horizontal carousels) */
+.markee-theme .no-scrollbar::-webkit-scrollbar { display: none; }
+.markee-theme .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Floating label field — softer, editorial input */
+.markee-theme .markee-field {
+  position: relative;
+  border-bottom: 1px solid var(--glass-border);
+  transition: border-color 0.2s ease;
+}
+.markee-theme .markee-field:focus-within { border-color: var(--primary); }
+.markee-theme .markee-field > input,
+.markee-theme .markee-field > textarea {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  outline: none;
+  padding: 1.6rem 0 0.7rem;
+  font-size: 1.05rem;
+  color: var(--foreground);
+  font-family: inherit;
+  resize: none;
+}
+.markee-theme .markee-field > label {
+  position: absolute;
+  left: 0;
+  top: 1.15rem;
+  font-size: 0.95rem;
+  color: oklch(0.7 0.02 280);
+  pointer-events: none;
+  transition: transform 0.2s ease, font-size 0.2s ease, color 0.2s ease;
+}
+.markee-theme .markee-field:focus-within > label,
+.markee-theme .markee-field.has-value > label {
+  transform: translateY(-1.05rem);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+/* Segment image card */
+.markee-theme .markee-seg-card {
+  position: relative;
+  flex: 0 0 78%;
+  scroll-snap-align: center;
+  aspect-ratio: 3 / 4;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s ease;
+}
+@media (min-width: 768px) {
+  .markee-theme .markee-seg-card { flex-basis: 36%; }
+}
+@media (min-width: 1024px) {
+  .markee-theme .markee-seg-card { flex-basis: 26%; }
+}
+.markee-theme .markee-seg-card.is-active {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow);
+  border-color: var(--primary);
+}
+.markee-theme .markee-seg-card .seg-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(.2,.8,.2,1), filter 0.4s ease;
+  filter: saturate(0.95) brightness(0.85);
+}
+.markee-theme .markee-seg-card:hover .seg-img,
+.markee-theme .markee-seg-card.is-active .seg-img {
+  transform: scale(1.05);
+  filter: saturate(1.1) brightness(0.95);
+}
+.markee-theme .markee-seg-card .seg-veil {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 30%, oklch(0.10 0.04 280 / 0.85) 100%);
+}
+.markee-theme .markee-seg-card .seg-check {
+  position: absolute; top: 14px; right: 14px;
+  width: 30px; height: 30px;
+  border-radius: 999px;
+  display: grid; place-items: center;
+  background: var(--gradient-primary);
+  color: var(--primary-foreground);
+  opacity: 0; transform: scale(0.6);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.markee-theme .markee-seg-card.is-active .seg-check { opacity: 1; transform: scale(1); }
+
+/* Palette pill */
+.markee-theme .markee-palette {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.85rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  cursor: pointer;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.markee-theme .markee-palette:hover { transform: translateY(-1px); }
+.markee-theme .markee-palette.is-active {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-glow);
+}
+.markee-theme .markee-palette .swatch-stack {
+  display: flex;
+}
+.markee-theme .markee-palette .swatch-stack span {
+  width: 22px; height: 22px;
+  border-radius: 999px;
+  border: 2px solid var(--background);
+  margin-left: -8px;
+}
+.markee-theme .markee-palette .swatch-stack span:first-child { margin-left: 0; }
+
+/* Floating navigation dock */
+.markee-theme .markee-dock {
+  position: sticky;
+  bottom: 1rem;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0.6rem 0.5rem 1.2rem;
+  border-radius: 999px;
+  background: oklch(0.14 0.03 275 / 0.78);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 20px 50px -20px oklch(0 0 0 / 0.6);
+}
+.markee-theme .markee-dock-dots { display: flex; gap: 6px; }
+.markee-theme .markee-dock-dots span {
+  display: block; width: 6px; height: 6px; border-radius: 999px;
+  background: oklch(1 0 0 / 0.18); transition: width 0.3s ease, background 0.3s ease;
+}
+.markee-theme .markee-dock-dots span.active { width: 22px; background: var(--primary); }
