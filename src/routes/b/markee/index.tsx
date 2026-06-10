@@ -120,7 +120,7 @@ function MarkeeHome() {
                 transition={{ duration: 0.8 }}
                 className="relative z-10 w-full lg:max-w-2xl"
               >
-                <h1 className="text-6xl font-black tracking-tight leading-[1] sm:text-7xl lg:text-[6rem] xl:text-[7rem]">
+                <h1 className="text-6xl font-black tracking-tight leading-[1] sm:text-7xl lg:text-[6.5rem] xl:text-[7.5rem]">
                   A Arte de <br />
                   <span className="relative inline-block mt-4">
                     <span className="bg-gradient-to-r from-primary via-white to-primary bg-[length:200%_auto] animate-gradient-text bg-clip-text text-transparent italic">
@@ -158,40 +158,75 @@ function MarkeeHome() {
                 </div>
               </motion.div>
 
-              {/* Sidebar Cards like in the print */}
+              {/* Sidebar Cards exactly as in the requested design */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="w-full lg:max-w-md space-y-4"
+                className="w-full lg:max-w-md space-y-6"
               >
-                <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition-all hover:bg-white/[0.08] hover:border-primary/20">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="h-2 w-2 rounded-full bg-primary animate-pulse" />
-                    <span className="text-[10px] font-black uppercase tracking-widest text-primary">Próximo Agendamento</span>
+                {/* Status Card */}
+                <div className="rounded-[2.5rem] border border-white/10 bg-[#0A0A0A]/80 p-8 backdrop-blur-2xl shadow-2xl relative overflow-hidden group hover:border-primary/30 transition-all duration-500">
+                  <div className="absolute top-0 right-0 p-4">
+                    <div className="flex gap-1">
+                      <div className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+                      <div className="h-1.5 w-1.5 rounded-full bg-primary/30" />
+                      <div className="h-1.5 w-1.5 rounded-full bg-primary/10" />
+                    </div>
                   </div>
-                  <p className="text-2xl font-black italic text-white mb-1">Corte & Barba</p>
-                  <p className="text-neutral-400 font-light italic">Hoje às 14:30 - Lucas Almeida</p>
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="h-14 w-14 rounded-3xl bg-primary/10 flex items-center justify-center border border-primary/20">
+                      <Zap className="h-7 w-7 text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-black uppercase tracking-[0.2em] text-primary/60">Sistema Ativo</p>
+                      <p className="text-xl font-black italic text-white">Markee Engine v2</p>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-end">
+                      <span className="text-sm font-medium text-neutral-500">Eficiência Mensal</span>
+                      <span className="text-3xl font-black italic text-white">+94%</span>
+                    </div>
+                    <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
+                      <motion.div 
+                        initial={{ width: 0 }}
+                        animate={{ width: '94%' }}
+                        transition={{ duration: 1.5, delay: 0.5 }}
+                        className="h-full bg-primary shadow-[0_0_15px_rgba(var(--primary-rgb),0.5)]" 
+                      />
+                    </div>
+                  </div>
                 </div>
 
-                <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-primary/10 to-transparent p-6 backdrop-blur-xl">
-                  <div className="flex justify-between items-center mb-4">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-neutral-400">Desempenho Semanal</span>
-                    <Zap className="h-4 w-4 text-primary" />
+                {/* Quote Card */}
+                <div className="rounded-[2.5rem] border border-white/10 bg-gradient-to-br from-white/5 to-transparent p-8 backdrop-blur-xl relative group">
+                  <div className="absolute -top-4 -left-4 h-12 w-12 rounded-2xl bg-primary/20 flex items-center justify-center border border-primary/30 backdrop-blur-md">
+                    <Star className="h-6 w-6 text-primary" />
                   </div>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-4xl font-black italic text-white">+84%</span>
-                    <span className="text-xs text-primary font-bold">↑ Em relação ao mês anterior</span>
-                  </div>
-                </div>
-
-                <div className="rounded-3xl border border-white/10 bg-black/40 p-6 backdrop-blur-xl">
-                  <p className="text-lg font-light italic text-neutral-300">
-                    "A interface é tão fluida que nossos clientes elogiam o agendamento tanto quanto o serviço."
+                  <p className="text-lg font-light italic text-neutral-300 leading-relaxed">
+                    "A sincronização via WhatsApp mudou completamente nosso fluxo. Reduzimos faltas em 40% já no primeiro mês."
                   </p>
-                  <div className="mt-4 flex items-center gap-3">
-                    <div className="h-8 w-8 rounded-full bg-gradient-to-tr from-primary to-blue-500" />
-                    <span className="text-sm font-bold text-white">Bruno Siqueira</span>
+                  <div className="mt-6 flex items-center gap-4">
+                    <div className="h-10 w-10 rounded-2xl bg-gradient-to-tr from-primary to-blue-600" />
+                    <div>
+                      <p className="text-sm font-black text-white">Dra. Letícia Meyer</p>
+                      <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">Clínica Meyer</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Integration Card */}
+                <div className="rounded-[2.5rem] border border-white/10 bg-black/40 p-6 backdrop-blur-xl flex items-center justify-between group hover:bg-white/5 transition-colors">
+                  <div className="flex items-center gap-4">
+                    <div className="flex -space-x-3">
+                      <div className="h-10 w-10 rounded-xl bg-blue-500 flex items-center justify-center border-2 border-[#020202]"><Zap className="h-5 w-5 text-white" /></div>
+                      <div className="h-10 w-10 rounded-xl bg-green-500 flex items-center justify-center border-2 border-[#020202]"><Check className="h-5 w-5 text-white" /></div>
+                    </div>
+                    <span className="text-sm font-bold text-neutral-400 italic">24+ Integrações Ativas</span>
+                  </div>
+                  <div className="h-8 w-8 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-primary/20 group-hover:text-primary transition-all">
+                    <ArrowRight className="h-4 w-4" />
                   </div>
                 </div>
               </motion.div>
