@@ -375,32 +375,40 @@ function MarkeeHome() {
         </section>
 
         {/* Elevated Footer CTA */}
-        <section className="mt-60 px-6">
+        <section className="mt-52 px-6">
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="mx-auto max-w-6xl rounded-[3rem] border border-white/10 bg-gradient-to-b from-white/[0.03] to-transparent p-12 text-center backdrop-blur-3xl md:p-24 relative overflow-hidden group"
+            className="mx-auto max-w-6xl rounded-[4rem] bg-primary p-12 text-center md:p-24 relative overflow-hidden group shadow-[0_50px_100px_-20px_rgba(var(--primary-rgb),0.3)]"
           >
-            {/* Background pattern */}
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(circle_at_center,white_1px,transparent_1px)] bg-[size:40px_40px]" />
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
+            {/* High-energy background elements */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-white/20 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-black/10 blur-[100px] rounded-full translate-y-1/2 -translate-x-1/2" />
             
-            <h2 className="text-5xl font-black tracking-tight md:text-8xl italic leading-none">
-              Pronto para <br />
-              <span className="text-primary">Elevar</span> o Nível?
+            <h2 className="text-5xl font-black tracking-tighter md:text-8xl italic leading-[0.9] text-black mb-8">
+              Transforme sua <br />
+              Gestão <span className="text-white">Hoje</span>.
             </h2>
-            <p className="mx-auto mt-8 max-w-2xl text-xl text-neutral-400 font-light leading-relaxed">
-              Junte-se a uma comunidade de negócios visionários que já descobriram o poder da 
-              Markee. Design, automação e elegância em cada clique.
+            <p className="mx-auto max-w-2xl text-xl text-black/70 font-bold leading-relaxed mb-12 italic">
+              A ferramenta definitiva para quem não aceita nada menos que a perfeição operacional e estética.
             </p>
-            <Button
-              size="lg"
-              className="mt-12 h-20 rounded-3xl bg-primary px-16 text-2xl font-black text-black hover:scale-105 active:scale-95 transition-all shadow-[0_30px_60px_-15px_rgba(var(--primary-rgb),0.4)] relative z-10"
-              onClick={handleStart}
-            >
-              Começar grátis por 7 dias
-            </Button>
+            
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 relative z-10">
+              <Button
+                size="lg"
+                className="h-20 w-full sm:w-auto rounded-3xl bg-black px-16 text-2xl font-black text-white hover:scale-105 active:scale-95 transition-all shadow-2xl"
+                onClick={handleStart}
+              >
+                Começar agora
+              </Button>
+              <button 
+                className="text-black font-black text-xl flex items-center gap-2 hover:translate-x-2 transition-transform italic"
+                onClick={() => navigate({ to: "/b/markee/pricing" })}
+              >
+                Ver todos os planos <ArrowRight className="h-6 w-6" />
+              </button>
+            </div>
           </motion.div>
         </section>
       </main>
