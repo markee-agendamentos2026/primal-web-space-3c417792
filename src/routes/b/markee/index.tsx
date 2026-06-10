@@ -113,14 +113,14 @@ function MarkeeHome() {
 
         <section className="px-6 relative">
           <div className="mx-auto max-w-7xl">
-            <div className="flex flex-col items-center text-center gap-16">
+            <div className="flex flex-col items-center gap-16 lg:flex-row lg:justify-between lg:text-left">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
-                className="relative z-10 w-full"
+                className="relative z-10 w-full lg:max-w-2xl text-center lg:text-left"
               >
-                <h1 className="text-7xl font-black tracking-tight leading-[1] sm:text-8xl lg:text-9xl xl:text-[10rem]">
+                <h1 className="text-7xl font-black tracking-tight leading-[1] sm:text-8xl lg:text-[7rem] xl:text-[8rem]">
                   A Arte de <br />
                   <span className="relative inline-block mt-4">
                     <span className="bg-gradient-to-r from-primary via-white to-primary bg-[length:200%_auto] animate-gradient-text bg-clip-text text-transparent italic">
@@ -135,12 +135,12 @@ function MarkeeHome() {
                   </span>
                 </h1>
                 
-                <p className="mt-12 mx-auto max-w-2xl text-xl text-neutral-400 leading-relaxed font-light sm:text-2xl">
+                <p className="mt-12 mx-auto lg:mx-0 max-w-2xl text-xl text-neutral-400 leading-relaxed font-light sm:text-2xl">
                   Transforme seu negócio com uma plataforma que respira sofisticação. 
                   Sincronização impecável, design intuitivo e a exclusividade que sua marca merece.
                 </p>
                 
-                <div className="mt-16 flex flex-col items-center gap-8 sm:flex-row sm:justify-center">
+                <div className="mt-16 flex flex-col items-center gap-8 sm:flex-row sm:justify-center lg:justify-start">
                   <Button
                     size="lg"
                     className="h-20 w-full sm:w-auto rounded-3xl bg-primary px-12 text-xl font-black text-black hover:scale-[1.05] active:scale-[0.95] transition-all shadow-[0_20px_50px_-15px_rgba(var(--primary-rgb),0.4)] group overflow-hidden relative"
@@ -164,12 +164,34 @@ function MarkeeHome() {
                   </button>
                 </div>
 
-                <div className="mt-20 mx-auto max-w-4xl flex items-center justify-center gap-12 grayscale opacity-30 hover:grayscale-0 hover:opacity-80 transition-all duration-1000 overflow-hidden py-6 border-y border-white/[0.03]">
+                <div className="mt-20 mx-auto lg:mx-0 max-w-4xl flex items-center justify-center lg:justify-start gap-12 grayscale opacity-30 hover:grayscale-0 hover:opacity-80 transition-all duration-1000 overflow-hidden py-6 border-y border-white/[0.03]">
                   <Shield className="h-10 w-10" />
                   <MousePointer2 className="h-10 w-10" />
                   <div className="h-6 w-px bg-white/10" />
                   <span className="text-sm font-bold tracking-[0.3em] uppercase">Trusted by Premium Brands</span>
                 </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="hidden lg:block relative"
+              >
+                <div className="relative z-10 space-y-6 text-right">
+                  <div className="rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl max-w-md ml-auto">
+                    <p className="text-3xl font-medium italic text-neutral-200">
+                      "Eficiência que se traduz em faturamento real."
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl max-w-sm ml-auto mr-12">
+                    <p className="text-xl font-medium text-neutral-300">
+                      Design que reflete o valor da sua marca.
+                    </p>
+                  </div>
+                </div>
+                {/* Decorative element background behind the text */}
+                <div className="absolute -inset-10 bg-primary/5 blur-[100px] -z-10 rounded-full" />
               </motion.div>
             </div>
           </div>
