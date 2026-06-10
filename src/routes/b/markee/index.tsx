@@ -120,7 +120,7 @@ function MarkeeHome() {
                 transition={{ duration: 0.8 }}
                 className="relative z-10 w-full lg:max-w-2xl"
               >
-                <h1 className="text-6xl font-black tracking-tight leading-[1] sm:text-7xl lg:text-[6rem] xl:text-[7rem]">
+                <h1 className="text-6xl font-black tracking-tight leading-[1] sm:text-7xl lg:text-[6.5rem] xl:text-[7.5rem]">
                   A Arte de <br />
                   <span className="relative inline-block mt-4">
                     <span className="bg-gradient-to-r from-primary via-white to-primary bg-[length:200%_auto] animate-gradient-text bg-clip-text text-transparent italic">
@@ -158,40 +158,75 @@ function MarkeeHome() {
                 </div>
               </motion.div>
 
-              {/* Sidebar Cards like in the print */}
+              {/* Sidebar Cards exactly as in the requested design */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="w-full lg:max-w-md space-y-4"
+                className="w-full lg:max-w-md space-y-6"
               >
-                <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition-all hover:bg-white/[0.08] hover:border-primary/20">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="h-2 w-2 rounded-full bg-primary animate-pulse" />
-                    <span className="text-[10px] font-black uppercase tracking-widest text-primary">Próximo Agendamento</span>
+                {/* Status Card */}
+                <div className="rounded-[2.5rem] border border-white/10 bg-[#0A0A0A]/80 p-8 backdrop-blur-2xl shadow-2xl relative overflow-hidden group hover:border-primary/30 transition-all duration-500">
+                  <div className="absolute top-0 right-0 p-4">
+                    <div className="flex gap-1">
+                      <div className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+                      <div className="h-1.5 w-1.5 rounded-full bg-primary/30" />
+                      <div className="h-1.5 w-1.5 rounded-full bg-primary/10" />
+                    </div>
                   </div>
-                  <p className="text-2xl font-black italic text-white mb-1">Corte & Barba</p>
-                  <p className="text-neutral-400 font-light italic">Hoje às 14:30 - Lucas Almeida</p>
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="h-14 w-14 rounded-3xl bg-primary/10 flex items-center justify-center border border-primary/20">
+                      <Zap className="h-7 w-7 text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-black uppercase tracking-[0.2em] text-primary/60">Sistema Ativo</p>
+                      <p className="text-xl font-black italic text-white">Markee Engine v2</p>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-end">
+                      <span className="text-sm font-medium text-neutral-500">Eficiência Mensal</span>
+                      <span className="text-3xl font-black italic text-white">+94%</span>
+                    </div>
+                    <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
+                      <motion.div 
+                        initial={{ width: 0 }}
+                        animate={{ width: '94%' }}
+                        transition={{ duration: 1.5, delay: 0.5 }}
+                        className="h-full bg-primary shadow-[0_0_15px_rgba(var(--primary-rgb),0.5)]" 
+                      />
+                    </div>
+                  </div>
                 </div>
 
-                <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-primary/10 to-transparent p-6 backdrop-blur-xl">
-                  <div className="flex justify-between items-center mb-4">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-neutral-400">Desempenho Semanal</span>
-                    <Zap className="h-4 w-4 text-primary" />
+                {/* Quote Card */}
+                <div className="rounded-[2.5rem] border border-white/10 bg-gradient-to-br from-white/5 to-transparent p-8 backdrop-blur-xl relative group">
+                  <div className="absolute -top-4 -left-4 h-12 w-12 rounded-2xl bg-primary/20 flex items-center justify-center border border-primary/30 backdrop-blur-md">
+                    <Star className="h-6 w-6 text-primary" />
                   </div>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-4xl font-black italic text-white">+84%</span>
-                    <span className="text-xs text-primary font-bold">↑ Em relação ao mês anterior</span>
-                  </div>
-                </div>
-
-                <div className="rounded-3xl border border-white/10 bg-black/40 p-6 backdrop-blur-xl">
-                  <p className="text-lg font-light italic text-neutral-300">
-                    "A interface é tão fluida que nossos clientes elogiam o agendamento tanto quanto o serviço."
+                  <p className="text-lg font-light italic text-neutral-300 leading-relaxed">
+                    "A sincronização via WhatsApp mudou completamente nosso fluxo. Reduzimos faltas em 40% já no primeiro mês."
                   </p>
-                  <div className="mt-4 flex items-center gap-3">
-                    <div className="h-8 w-8 rounded-full bg-gradient-to-tr from-primary to-blue-500" />
-                    <span className="text-sm font-bold text-white">Bruno Siqueira</span>
+                  <div className="mt-6 flex items-center gap-4">
+                    <div className="h-10 w-10 rounded-2xl bg-gradient-to-tr from-primary to-blue-600" />
+                    <div>
+                      <p className="text-sm font-black text-white">Dra. Letícia Meyer</p>
+                      <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">Clínica Meyer</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Integration Card */}
+                <div className="rounded-[2.5rem] border border-white/10 bg-black/40 p-6 backdrop-blur-xl flex items-center justify-between group hover:bg-white/5 transition-colors">
+                  <div className="flex items-center gap-4">
+                    <div className="flex -space-x-3">
+                      <div className="h-10 w-10 rounded-xl bg-blue-500 flex items-center justify-center border-2 border-[#020202]"><Zap className="h-5 w-5 text-white" /></div>
+                      <div className="h-10 w-10 rounded-xl bg-green-500 flex items-center justify-center border-2 border-[#020202]"><Check className="h-5 w-5 text-white" /></div>
+                    </div>
+                    <span className="text-sm font-bold text-neutral-400 italic">24+ Integrações Ativas</span>
+                  </div>
+                  <div className="h-8 w-8 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-primary/20 group-hover:text-primary transition-all">
+                    <ArrowRight className="h-4 w-4" />
                   </div>
                 </div>
               </motion.div>
@@ -340,32 +375,40 @@ function MarkeeHome() {
         </section>
 
         {/* Elevated Footer CTA */}
-        <section className="mt-60 px-6">
+        <section className="mt-52 px-6">
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="mx-auto max-w-6xl rounded-[3rem] border border-white/10 bg-gradient-to-b from-white/[0.03] to-transparent p-12 text-center backdrop-blur-3xl md:p-24 relative overflow-hidden group"
+            className="mx-auto max-w-6xl rounded-[4rem] bg-primary p-12 text-center md:p-24 relative overflow-hidden group shadow-[0_50px_100px_-20px_rgba(var(--primary-rgb),0.3)]"
           >
-            {/* Background pattern */}
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(circle_at_center,white_1px,transparent_1px)] bg-[size:40px_40px]" />
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
+            {/* High-energy background elements */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-white/20 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-black/10 blur-[100px] rounded-full translate-y-1/2 -translate-x-1/2" />
             
-            <h2 className="text-5xl font-black tracking-tight md:text-8xl italic leading-none">
-              Pronto para <br />
-              <span className="text-primary">Elevar</span> o Nível?
+            <h2 className="text-5xl font-black tracking-tighter md:text-8xl italic leading-[0.9] text-black mb-8">
+              Transforme sua <br />
+              Gestão <span className="text-white">Hoje</span>.
             </h2>
-            <p className="mx-auto mt-8 max-w-2xl text-xl text-neutral-400 font-light leading-relaxed">
-              Junte-se a uma comunidade de negócios visionários que já descobriram o poder da 
-              Markee. Design, automação e elegância em cada clique.
+            <p className="mx-auto max-w-2xl text-xl text-black/70 font-bold leading-relaxed mb-12 italic">
+              A ferramenta definitiva para quem não aceita nada menos que a perfeição operacional e estética.
             </p>
-            <Button
-              size="lg"
-              className="mt-12 h-20 rounded-3xl bg-primary px-16 text-2xl font-black text-black hover:scale-105 active:scale-95 transition-all shadow-[0_30px_60px_-15px_rgba(var(--primary-rgb),0.4)] relative z-10"
-              onClick={handleStart}
-            >
-              Começar grátis por 7 dias
-            </Button>
+            
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 relative z-10">
+              <Button
+                size="lg"
+                className="h-20 w-full sm:w-auto rounded-3xl bg-black px-16 text-2xl font-black text-white hover:scale-105 active:scale-95 transition-all shadow-2xl"
+                onClick={handleStart}
+              >
+                Começar agora
+              </Button>
+              <button 
+                className="text-black font-black text-xl flex items-center gap-2 hover:translate-x-2 transition-transform italic"
+                onClick={() => navigate({ to: "/b/markee/pricing" })}
+              >
+                Ver todos os planos <ArrowRight className="h-6 w-6" />
+              </button>
+            </div>
           </motion.div>
         </section>
       </main>
