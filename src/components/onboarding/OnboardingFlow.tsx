@@ -245,8 +245,16 @@ export function OnboardingFlow() {
                 </div>
               </div>
             </div>
-            <Button className="w-full h-14 bg-white text-black hover:bg-neutral-200 rounded-full font-bold text-lg" onClick={() => nextStep("status")}>
-              Finalizar Cadastro
+            <Button 
+              className="w-full h-14 bg-white text-black hover:bg-neutral-200 rounded-full font-bold text-lg" 
+              onClick={handleSubmit}
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <Loader2 className="h-6 w-6 animate-spin" />
+              ) : (
+                "Finalizar Cadastro"
+              )}
             </Button>
           </motion.div>
         )}
