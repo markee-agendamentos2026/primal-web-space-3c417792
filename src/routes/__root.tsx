@@ -9,7 +9,7 @@ import {
 } from "@tanstack/react-router";
 
 import { Toaster } from "@/components/ui/sonner";
-import { TenantThemeProvider } from "@/components/TenantThemeProvider";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 import appCss from "../styles.css?url";
 
@@ -18,16 +18,16 @@ function NotFoundComponent() {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">Página não encontrada</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+          A página que você está procurando não existe ou foi movida.
         </p>
         <div className="mt-6">
           <Link
             to="/"
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Go home
+            Voltar para o início
           </Link>
         </div>
       </div>
@@ -43,10 +43,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
+          Esta página não carregou
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
+          Algo deu errado do nosso lado. Tente atualizar ou volte para o início.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -56,13 +56,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
             }}
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Try again
+            Tentar novamente
           </button>
           <a
             href="/"
             className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
           >
-            Go home
+            Início
           </a>
         </div>
       </div>
@@ -77,14 +77,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "google", content: "notranslate" },
       { httpEquiv: "Content-Language", content: "pt-BR" } as any,
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { title: "Markee — Gestão de Agendamentos Premium" },
+      { name: "description", content: "A plataforma completa para gestão do seu negócio baseado em agendamentos." },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -104,7 +98,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" translate="no" className="notranslate">
+    <html lang="pt-BR" translate="no" className="notranslate dark">
       <head>
         <HeadContent />
       </head>
@@ -121,10 +115,10 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <TenantThemeProvider>
+      <ThemeProvider defaultTheme="dark" storageKey="markee-theme">
         <Outlet />
         <Toaster position="top-center" theme="dark" richColors closeButton />
-      </TenantThemeProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }
