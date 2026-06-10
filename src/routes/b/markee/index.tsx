@@ -53,53 +53,54 @@ function MarkeeHome() {
       <nav className="fixed top-0 z-50 w-full border-b border-white/[0.05] bg-black/40 backdrop-blur-2xl">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
           <div className="flex items-center gap-4 group cursor-pointer">
-            <div className="relative flex h-14 w-14 items-center justify-center">
-              {/* Outer Life Ring - Rotating Power */}
-              <div className="absolute inset-0 rounded-full border-2 border-primary/10" />
-              <motion.div 
-                className="absolute inset-0 rounded-full border-t-2 border-r-2 border-primary shadow-[0_0_15px_rgba(var(--primary-rgb),0.5)]"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-              />
-              <motion.div 
-                className="absolute inset-2 rounded-full border-b-2 border-l-2 border-blue-400/30"
-                animate={{ rotate: -360 }}
-                transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-              />
-              
-              {/* The AI Face / Core */}
-              <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-black border border-white/10 overflow-hidden shadow-inner">
-                {/* AI "Eyes" or Face features */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--primary)_0%,transparent_70%)] opacity-30" />
-                
-                {/* Visualizing a Face */}
-                <div className="flex flex-col items-center gap-1.5 z-10">
+            <div className="relative flex h-16 w-16 items-center justify-center">
+              {/* Main AI Sphere - Central Body */}
+              <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-black border border-white/20 shadow-[0_0_20px_rgba(var(--primary-rgb),0.4)] z-20">
+                {/* AI Eyes / Face */}
+                <div className="flex flex-col items-center gap-1">
                   <div className="flex gap-2">
                     <motion.div 
-                      className="h-1 w-2.5 rounded-full bg-primary"
-                      animate={{ scaleY: [1, 0.1, 1], opacity: [1, 0.5, 1] }}
-                      transition={{ duration: 3, repeat: Infinity, times: [0, 0.1, 0.2] }}
+                      className="h-1 w-2 rounded-full bg-primary shadow-[0_0_8px_var(--primary)]"
+                      animate={{ scaleY: [1, 0.1, 1] }}
+                      transition={{ duration: 4, repeat: Infinity, times: [0, 0.05, 0.1] }}
                     />
                     <motion.div 
-                      className="h-1 w-2.5 rounded-full bg-primary"
-                      animate={{ scaleY: [1, 0.1, 1], opacity: [1, 0.5, 1] }}
-                      transition={{ duration: 3, repeat: Infinity, times: [0, 0.1, 0.2] }}
+                      className="h-1 w-2 rounded-full bg-primary shadow-[0_0_8px_var(--primary)]"
+                      animate={{ scaleY: [1, 0.1, 1] }}
+                      transition={{ duration: 4, repeat: Infinity, times: [0, 0.05, 0.1] }}
                     />
                   </div>
-                  <motion.div 
-                    className="h-0.5 w-4 rounded-full bg-primary/60"
-                    animate={{ width: ["1rem", "1.2rem", "1rem"] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  />
                 </div>
               </div>
+
+              {/* Orbital Rings - Concentric and Intersecting */}
+              <motion.div 
+                className="absolute h-14 w-14 rounded-full border border-primary/40"
+                animate={{ rotate: 360, scale: [1, 1.05, 1] }}
+                transition={{ rotate: { duration: 8, repeat: Infinity, ease: "linear" }, scale: { duration: 2, repeat: Infinity } }}
+              />
+              <motion.div 
+                className="absolute h-16 w-16 rounded-full border border-blue-500/20"
+                style={{ rotateX: "60deg", rotateY: "30deg" }}
+                animate={{ rotateZ: 360 }}
+                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+              />
+              <motion.div 
+                className="absolute h-16 w-16 rounded-full border border-purple-500/20"
+                style={{ rotateX: "30deg", rotateY: "60deg" }}
+                animate={{ rotateZ: -360 }}
+                transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+              />
+
+              {/* Power Particles / Aura */}
+              <div className="absolute inset-0 bg-primary/10 blur-2xl rounded-full animate-pulse" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-black tracking-tighter bg-gradient-to-r from-white via-white/90 to-primary bg-clip-text text-transparent italic leading-none">
+              <span className="text-2xl font-black tracking-tighter bg-gradient-to-r from-white via-white to-primary bg-clip-text text-transparent italic leading-none">
                 Markee
               </span>
-              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary/80 leading-none mt-1">
-                Living AI Agent
+              <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary/80 leading-none mt-1.5 ml-0.5">
+                AI Evolution
               </span>
             </div>
           </div>
