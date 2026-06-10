@@ -14,16 +14,416 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      availability: {
+        Row: {
+          address: string | null
+          business_name: string | null
+          close_time: string
+          days_enabled: boolean[]
+          id: number
+          instagram_url: string | null
+          lunch_end: string | null
+          lunch_start: string | null
+          maps_url: string | null
+          max_future_days: number
+          min_lead_min: number
+          open_time: string
+          require_pro_selection: boolean
+          updated_at: string
+          whatsapp_url: string | null
+        }
+        Insert: {
+          address?: string | null
+          business_name?: string | null
+          close_time?: string
+          days_enabled?: boolean[]
+          id?: number
+          instagram_url?: string | null
+          lunch_end?: string | null
+          lunch_start?: string | null
+          maps_url?: string | null
+          max_future_days?: number
+          min_lead_min?: number
+          open_time?: string
+          require_pro_selection?: boolean
+          updated_at?: string
+          whatsapp_url?: string | null
+        }
+        Update: {
+          address?: string | null
+          business_name?: string | null
+          close_time?: string
+          days_enabled?: boolean[]
+          id?: number
+          instagram_url?: string | null
+          lunch_end?: string | null
+          lunch_start?: string | null
+          maps_url?: string | null
+          max_future_days?: number
+          min_lead_min?: number
+          open_time?: string
+          require_pro_selection?: boolean
+          updated_at?: string
+          whatsapp_url?: string | null
+        }
+        Relationships: []
+      }
+      blocked_dates: {
+        Row: {
+          date: string
+          id: string
+          reason: string | null
+        }
+        Insert: {
+          date: string
+          id?: string
+          reason?: string | null
+        }
+        Update: {
+          date?: string
+          id?: string
+          reason?: string | null
+        }
+        Relationships: []
+      }
+      bookings: {
+        Row: {
+          client_name: string
+          client_name_snapshot: string | null
+          created_at: string
+          date: string
+          duration_min: number
+          email: string | null
+          id: string
+          price: number
+          professional_id: string | null
+          professional_name: string | null
+          service_id: string | null
+          service_name: string
+          status: Database["public"]["Enums"]["booking_status"]
+          time: string
+          user_id: string | null
+          whatsapp: string
+        }
+        Insert: {
+          client_name: string
+          client_name_snapshot?: string | null
+          created_at?: string
+          date: string
+          duration_min: number
+          email?: string | null
+          id?: string
+          price?: number
+          professional_id?: string | null
+          professional_name?: string | null
+          service_id?: string | null
+          service_name: string
+          status?: Database["public"]["Enums"]["booking_status"]
+          time: string
+          user_id?: string | null
+          whatsapp: string
+        }
+        Update: {
+          client_name?: string
+          client_name_snapshot?: string | null
+          created_at?: string
+          date?: string
+          duration_min?: number
+          email?: string | null
+          id?: string
+          price?: number
+          professional_id?: string | null
+          professional_name?: string | null
+          service_id?: string | null
+          service_name?: string
+          status?: Database["public"]["Enums"]["booking_status"]
+          time?: string
+          user_id?: string | null
+          whatsapp?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bookings_professional_id_fkey"
+            columns: ["professional_id"]
+            isOneToOne: false
+            referencedRelation: "professionals"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bookings_service_id_fkey"
+            columns: ["service_id"]
+            isOneToOne: false
+            referencedRelation: "services"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      professionals: {
+        Row: {
+          active: boolean
+          created_at: string
+          id: string
+          name: string
+          photo_url: string | null
+          role: string | null
+          sort_order: number
+          user_id: string | null
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          name: string
+          photo_url?: string | null
+          role?: string | null
+          sort_order?: number
+          user_id?: string | null
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          name?: string
+          photo_url?: string | null
+          role?: string | null
+          sort_order?: number
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          active: boolean
+          created_at: string
+          email: string | null
+          id: string
+          name: string | null
+          whatsapp: string | null
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          email?: string | null
+          id: string
+          name?: string | null
+          whatsapp?: string | null
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          email?: string | null
+          id?: string
+          name?: string | null
+          whatsapp?: string | null
+        }
+        Relationships: []
+      }
+      recurrence_campaigns: {
+        Row: {
+          channel: Database["public"]["Enums"]["campaign_channel"]
+          created_at: string
+          id: string
+          name: string
+          plan_tier: Database["public"]["Enums"]["plan_tier"]
+          scheduled_at: string | null
+          status: string
+          target_filter: string
+          template: string
+        }
+        Insert: {
+          channel: Database["public"]["Enums"]["campaign_channel"]
+          created_at?: string
+          id?: string
+          name: string
+          plan_tier?: Database["public"]["Enums"]["plan_tier"]
+          scheduled_at?: string | null
+          status?: string
+          target_filter?: string
+          template: string
+        }
+        Update: {
+          channel?: Database["public"]["Enums"]["campaign_channel"]
+          created_at?: string
+          id?: string
+          name?: string
+          plan_tier?: Database["public"]["Enums"]["plan_tier"]
+          scheduled_at?: string | null
+          status?: string
+          target_filter?: string
+          template?: string
+        }
+        Relationships: []
+      }
+      reviews: {
+        Row: {
+          booking_id: string | null
+          comment: string | null
+          created_at: string
+          id: string
+          professional_id: string | null
+          stars: number
+        }
+        Insert: {
+          booking_id?: string | null
+          comment?: string | null
+          created_at?: string
+          id?: string
+          professional_id?: string | null
+          stars: number
+        }
+        Update: {
+          booking_id?: string | null
+          comment?: string | null
+          created_at?: string
+          id?: string
+          professional_id?: string | null
+          stars?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "reviews_professional_id_fkey"
+            columns: ["professional_id"]
+            isOneToOne: false
+            referencedRelation: "professionals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      services: {
+        Row: {
+          active: boolean
+          created_at: string
+          description: string | null
+          duration_min: number
+          emoji: string | null
+          id: string
+          name: string
+          photo_url: string | null
+          price: number
+          promo_ends_at: string | null
+          promo_pct: number | null
+          promo_starts_at: string | null
+          sort_order: number
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          description?: string | null
+          duration_min: number
+          emoji?: string | null
+          id?: string
+          name: string
+          photo_url?: string | null
+          price?: number
+          promo_ends_at?: string | null
+          promo_pct?: number | null
+          promo_starts_at?: string | null
+          sort_order?: number
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          description?: string | null
+          duration_min?: number
+          emoji?: string | null
+          id?: string
+          name?: string
+          photo_url?: string | null
+          price?: number
+          promo_ends_at?: string | null
+          promo_pct?: number | null
+          promo_starts_at?: string | null
+          sort_order?: number
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      cancel_booking: {
+        Args: { _id: string; _whatsapp: string }
+        Returns: boolean
+      }
+      ensure_client_profile: {
+        Args: { _email: string; _name: string; _whatsapp: string }
+        Returns: string
+      }
+      get_bookings_by_whatsapp: {
+        Args: { _whatsapp: string }
+        Returns: {
+          client_name: string
+          client_name_snapshot: string | null
+          created_at: string
+          date: string
+          duration_min: number
+          email: string | null
+          id: string
+          price: number
+          professional_id: string | null
+          professional_name: string | null
+          service_id: string | null
+          service_name: string
+          status: Database["public"]["Enums"]["booking_status"]
+          time: string
+          user_id: string | null
+          whatsapp: string
+        }[]
+        SetofOptions: {
+          from: "*"
+          to: "bookings"
+          isOneToOne: false
+          isSetofReturn: true
+        }
+      }
+      get_taken_slots: {
+        Args: { _date: string; _professional_id?: string }
+        Returns: {
+          duration_min: number
+          professional_id: string
+          time: string
+        }[]
+      }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      normalize_phone: { Args: { p: string }; Returns: string }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "owner" | "professional" | "client"
+      booking_status: "pending" | "confirmed" | "cancelled" | "done"
+      campaign_channel: "whatsapp" | "email"
+      plan_tier: "basic" | "intermediate" | "premium"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +550,11 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["owner", "professional", "client"],
+      booking_status: ["pending", "confirmed", "cancelled", "done"],
+      campaign_channel: ["whatsapp", "email"],
+      plan_tier: ["basic", "intermediate", "premium"],
+    },
   },
 } as const
