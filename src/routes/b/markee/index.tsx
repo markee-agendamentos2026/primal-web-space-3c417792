@@ -361,10 +361,13 @@ function MarkeeHome() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
             <div className="col-span-2">
               <div className="flex items-center gap-4 mb-6">
-                <div className="relative flex h-10 w-10 items-center justify-center">
-                  <div className="absolute inset-0 rounded-full bg-primary/30 blur-sm animate-pulse" />
-                  <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-black border border-white/20">
-                    <span className="text-sm font-black text-primary italic">M</span>
+                <div className="relative flex h-12 w-12 items-center justify-center">
+                  <div className="absolute inset-0 rounded-full border border-primary/20 animate-spin-slow" />
+                  <div className="relative flex h-9 w-9 items-center justify-center rounded-full bg-black border border-white/20">
+                    <div className="flex gap-1">
+                      <div className="h-1 w-1 rounded-full bg-primary" />
+                      <div className="h-1 w-1 rounded-full bg-primary" />
+                    </div>
                   </div>
                 </div>
                 <span className="text-2xl font-black italic tracking-tight">Markee AI</span>
