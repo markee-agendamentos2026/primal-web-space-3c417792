@@ -113,34 +113,21 @@ function MarkeeHome() {
 
         <section className="px-6 relative">
           <div className="mx-auto max-w-7xl">
-            <div className="flex flex-col items-center text-center lg:items-start lg:text-left grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="flex flex-col items-center text-center gap-16">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="relative z-10"
+                className="relative z-10 w-full"
               >
-                <motion.div 
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary/90"
-                >
-                  <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
-                  </span>
-                  Experiência de Próxima Geração
-                </motion.div>
-                
-                <h1 className="mt-8 text-6xl font-black tracking-tight leading-[1] sm:text-7xl lg:text-8xl xl:text-9xl">
+                <h1 className="text-7xl font-black tracking-tight leading-[1] sm:text-8xl lg:text-9xl xl:text-[10rem]">
                   A Arte de <br />
-                  <span className="relative inline-block mt-2">
+                  <span className="relative inline-block mt-4">
                     <span className="bg-gradient-to-r from-primary via-white to-primary bg-[length:200%_auto] animate-gradient-text bg-clip-text text-transparent italic">
                       Agendar
                     </span>
                     <motion.div 
-                      className="absolute -bottom-2 left-0 h-1 bg-primary/50 rounded-full"
+                      className="absolute -bottom-2 left-0 h-2 bg-primary/50 rounded-full"
                       initial={{ width: 0 }}
                       animate={{ width: '100%' }}
                       transition={{ delay: 1, duration: 1 }}
@@ -148,90 +135,41 @@ function MarkeeHome() {
                   </span>
                 </h1>
                 
-                <p className="mt-10 max-w-xl text-xl text-neutral-400 leading-relaxed font-light">
+                <p className="mt-12 mx-auto max-w-2xl text-xl text-neutral-400 leading-relaxed font-light sm:text-2xl">
                   Transforme seu negócio com uma plataforma que respira sofisticação. 
                   Sincronização impecável, design intuitivo e a exclusividade que sua marca merece.
                 </p>
                 
-                <div className="mt-14 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+                <div className="mt-16 flex flex-col items-center gap-8 sm:flex-row sm:justify-center">
                   <Button
                     size="lg"
-                    className="h-16 w-full sm:w-auto rounded-2xl bg-primary px-10 text-lg font-black text-black hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_20px_40px_-15px_rgba(var(--primary-rgb),0.3)] group overflow-hidden relative"
+                    className="h-20 w-full sm:w-auto rounded-3xl bg-primary px-12 text-xl font-black text-black hover:scale-[1.05] active:scale-[0.95] transition-all shadow-[0_20px_50px_-15px_rgba(var(--primary-rgb),0.4)] group overflow-hidden relative"
                     onClick={handleStart}
                   >
                     <span className="relative z-10 flex items-center gap-2">
                       Começar grátis por 7 dias
-                      <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="h-6 w-6 transition-transform group-hover:translate-x-1" />
                     </span>
                     <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity" />
                   </Button>
                   
                   <button
-                    className="group flex items-center gap-4 text-white hover:text-primary transition-colors font-semibold"
+                    className="group flex items-center gap-4 text-white hover:text-primary transition-colors font-bold text-lg"
                     onClick={() => navigate({ to: "/b/markee/tracking" })}
                   >
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5 transition-all group-hover:border-primary/50 group-hover:bg-primary/10">
-                      <Play className="h-6 w-6 fill-current ml-1" />
+                    <div className="flex h-16 w-16 items-center justify-center rounded-3xl border border-white/10 bg-white/5 transition-all group-hover:border-primary/50 group-hover:bg-primary/10">
+                      <Play className="h-7 w-7 fill-current ml-1" />
                     </div>
                     <span>Acompanhar chamado</span>
                   </button>
                 </div>
 
-                <div className="mt-16 flex items-center gap-8 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-700 overflow-hidden py-4 border-y border-white/5">
-                  <Shield className="h-8 w-8" />
-                  <MousePointer2 className="h-8 w-8" />
-                  <div className="h-4 w-px bg-white/10" />
-                  <span className="text-sm font-bold tracking-widest uppercase">Trusted by 200+ Premium Brands</span>
+                <div className="mt-20 mx-auto max-w-4xl flex items-center justify-center gap-12 grayscale opacity-30 hover:grayscale-0 hover:opacity-80 transition-all duration-1000 overflow-hidden py-6 border-y border-white/[0.03]">
+                  <Shield className="h-10 w-10" />
+                  <MousePointer2 className="h-10 w-10" />
+                  <div className="h-6 w-px bg-white/10" />
+                  <span className="text-sm font-bold tracking-[0.3em] uppercase">Trusted by Premium Brands</span>
                 </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
-                animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                transition={{ duration: 1, delay: 0.4 }}
-                className="relative hidden lg:block"
-              >
-                {/* Floating UI Elements */}
-                <div className="relative z-10 space-y-8">
-                  <motion.div 
-                    animate={{ y: [0, -10, 0] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    className="rounded-3xl border border-white/10 bg-black/40 p-8 backdrop-blur-2xl shadow-2xl mr-12 hover:border-primary/30 transition-colors"
-                  >
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="h-3 w-3 rounded-full bg-red-500" />
-                      <div className="h-3 w-3 rounded-full bg-yellow-500" />
-                      <div className="h-3 w-3 rounded-full bg-green-500" />
-                    </div>
-                    <p className="text-2xl font-light italic text-neutral-200 leading-tight">
-                      "A Markee elevou nossa clínica ao status de referência em experiência do cliente."
-                    </p>
-                    <div className="mt-6 flex items-center gap-3">
-                      <div className="h-10 w-10 rounded-full bg-gradient-to-tr from-primary to-blue-500" />
-                      <div>
-                        <p className="font-bold text-sm">Mariana Silva</p>
-                        <p className="text-xs text-neutral-500 font-medium">CEO @ Studio Luxury</p>
-                      </div>
-                    </div>
-                  </motion.div>
-
-                  <motion.div 
-                    animate={{ y: [0, 10, 0] }}
-                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                    className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 to-transparent p-6 backdrop-blur-xl ml-12 shadow-xl border-l-primary/30 border-l-4"
-                  >
-                    <div className="flex justify-between items-center mb-2">
-                       <span className="text-xs font-bold text-neutral-500 uppercase">Growth Insights</span>
-                       <Zap className="h-4 w-4 text-primary" />
-                    </div>
-                    <p className="text-3xl font-black text-white">+42%</p>
-                    <p className="text-sm text-neutral-400 font-medium">Aumento na retenção mensal</p>
-                  </motion.div>
-                </div>
-
-                {/* Decorative Circles */}
-                <div className="absolute -top-20 -right-20 h-64 w-64 bg-primary/10 rounded-full blur-[80px]" />
-                <div className="absolute -bottom-20 -left-20 h-64 w-64 bg-blue-500/10 rounded-full blur-[80px]" />
               </motion.div>
             </div>
           </div>
@@ -321,6 +259,62 @@ function MarkeeHome() {
           </div>
         </section>
 
+        {/* Social Proof Section (Moved below plans) */}
+        <section className="mt-40 px-6 relative">
+          <div className="mx-auto max-w-7xl">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="space-y-8"
+              >
+                <motion.div 
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  className="rounded-3xl border border-white/10 bg-black/40 p-10 backdrop-blur-2xl shadow-2xl hover:border-primary/30 transition-colors"
+                >
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="h-3 w-3 rounded-full bg-red-500" />
+                    <div className="h-3 w-3 rounded-full bg-yellow-500" />
+                    <div className="h-3 w-3 rounded-full bg-green-500" />
+                  </div>
+                  <p className="text-3xl font-light italic text-neutral-200 leading-tight">
+                    "A Markee elevou nossa clínica ao status de referência em experiência do cliente."
+                  </p>
+                  <div className="mt-8 flex items-center gap-4">
+                    <div className="h-12 w-12 rounded-full bg-gradient-to-tr from-primary to-blue-500" />
+                    <div>
+                      <p className="font-bold text-lg text-white">Mariana Silva</p>
+                      <p className="text-sm text-neutral-500 font-medium">CEO @ Studio Luxury</p>
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+
+              <motion.div 
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="space-y-8"
+              >
+                <motion.div 
+                  animate={{ y: [0, 10, 0] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                  className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 to-transparent p-10 backdrop-blur-xl shadow-xl border-l-primary/30 border-l-4"
+                >
+                  <div className="flex justify-between items-center mb-6">
+                    <span className="text-xs font-black text-neutral-500 uppercase tracking-[0.2em]">Growth Insights</span>
+                    <Zap className="h-6 w-6 text-primary" />
+                  </div>
+                  <p className="text-6xl font-black text-white italic">+42%</p>
+                  <p className="text-xl text-neutral-400 font-light mt-2">Aumento na retenção mensal de clientes premium</p>
+                </motion.div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
         {/* Elevated Footer CTA */}
         <section className="mt-60 px-6">
           <motion.div 
@@ -401,5 +395,3 @@ function MarkeeHome() {
     </div>
   );
 }
-
-
