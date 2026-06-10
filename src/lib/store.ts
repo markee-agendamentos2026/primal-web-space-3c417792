@@ -113,7 +113,7 @@ export async function isClientActive(whatsapp: string): Promise<boolean> {
   if (wa.length < 10) return true;
   const { data, error } = await supabase.rpc("is_client_active", {
     _whatsapp: wa,
-  });
+  } as any);
   if (error) return true;
-  return data !== false;
+  return (data as any) !== false;
 }
