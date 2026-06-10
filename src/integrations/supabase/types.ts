@@ -7,149 +7,53 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instantiate createClient with right options
-  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
-  __InternalSupabase: {
-    PostgrestVersion: "14.5"
-  }
   public: {
     Tables: {
-      [_ in never]: never
+      profiles: {
+        Row: { id: string; name: string | null; whatsapp: string | null; email: string | null; active: boolean; created_at: string }
+        Insert: { id: string; name?: string | null; whatsapp?: string | null; email?: string | null; active?: boolean; created_at?: string }
+        Update: { id?: string; name?: string | null; whatsapp?: string | null; email?: string | null; active?: boolean; created_at?: string }
+        Relationships: []
+      }
+      services: {
+        Row: { id: string; name: string; duration_min: number; price: number; emoji: string | null; photo_url: string | null; active: boolean; sort_order: number; promo_pct: number | null; promo_starts_at: string | null; promo_ends_at: string | null; description: string | null; created_at: string }
+        Insert: { id?: string; name: string; duration_min: number; price?: number; emoji?: string | null; photo_url?: string | null; active?: boolean; sort_order?: number; promo_pct?: number | null; promo_starts_at?: string | null; promo_ends_at?: string | null; description?: string | null; created_at?: string }
+        Update: { id?: string; name?: string; duration_min?: number; price?: number; emoji?: string | null; photo_url?: string | null; active?: boolean; sort_order?: number; promo_pct?: number | null; promo_starts_at?: string | null; promo_ends_at?: string | null; description?: string | null; created_at?: string }
+        Relationships: []
+      }
+      professionals: {
+        Row: { id: string; user_id: string | null; name: string; role: string | null; photo_url: string | null; active: boolean; sort_order: number; created_at: string }
+        Insert: { id?: string; user_id?: string | null; name: string; role?: string | null; photo_url?: string | null; active?: boolean; sort_order?: number; created_at?: string }
+        Update: { id?: string; user_id?: string | null; name?: string; role?: string | null; photo_url?: string | null; active?: boolean; sort_order?: number; created_at?: string }
+        Relationships: []
+      }
+      bookings: {
+        Row: { id: string; client_name: string; whatsapp: string; email: string | null; professional_id: string | null; service_id: string | null; service_name: string; professional_name: string | null; date: string; time: string; duration_min: number; price: number; status: Database["public"]["Enums"]["booking_status"]; user_id: string | null; client_name_snapshot: string | null; created_at: string }
+        Insert: { id?: string; client_name: string; whatsapp: string; email?: string | null; professional_id?: string | null; service_id?: string | null; service_name: string; professional_name?: string | null; date: string; time: string; duration_min: number; price?: number; status?: Database["public"]["Enums"]["booking_status"]; user_id?: string | null; client_name_snapshot?: string | null; created_at?: string }
+        Update: { id?: string; client_name?: string; whatsapp?: string; email?: string | null; professional_id?: string | null; service_id?: string | null; service_name?: string; professional_name?: string | null; date?: string; time?: string; duration_min?: number; price?: number; status?: Database["public"]["Enums"]["booking_status"]; user_id?: string | null; client_name_snapshot?: string | null; created_at?: string }
+        Relationships: []
+      }
+      availability: {
+        Row: { id: number; open_time: string; close_time: string; days_enabled: boolean[]; lunch_start: string | null; lunch_end: string | null; min_lead_min: number; max_future_days: number; require_pro_selection: boolean; business_name: string | null; address: string | null; maps_url: string | null; whatsapp_url: string | null; instagram_url: string | null; updated_at: string }
+        Insert: { id?: number; open_time?: string; close_time?: string; days_enabled?: boolean[]; lunch_start?: string | null; lunch_end?: string | null; min_lead_min?: number; max_future_days?: number; require_pro_selection?: boolean; business_name?: string | null; address?: string | null; maps_url?: string | null; whatsapp_url?: string | null; instagram_url?: string | null; updated_at?: string }
+        Update: { id?: number; open_time?: string; close_time?: string; days_enabled?: boolean[]; lunch_start?: string | null; lunch_end?: string | null; min_lead_min?: number; max_future_days?: number; require_pro_selection?: boolean; business_name?: string | null; address?: string | null; maps_url?: string | null; whatsapp_url?: string | null; instagram_url?: string | null; updated_at?: string }
+        Relationships: []
+      }
     }
-    Views: {
-      [_ in never]: never
-    }
+    Views: { [_ in never]: never }
     Functions: {
-      [_ in never]: never
+      cancel_booking: { Args: { _id: string; _whatsapp: string }; Returns: boolean }
+      ensure_client_profile: { Args: { _whatsapp: string; _name: string; _email: string }; Returns: string }
+      get_bookings_by_whatsapp: { Args: { _whatsapp: string }; Returns: Database["public"]["Tables"]["bookings"]["Row"][] }
+      get_taken_slots: { Args: { _date: string; _professional_id?: string }; Returns: { time: string; duration_min: number; professional_id: string }[] }
+      has_role: { Args: { _user_id: string; _role: Database["public"]["Enums"]["app_role"] }; Returns: boolean }
+      normalize_phone: { Args: { p: string }; Returns: string }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "owner" | "professional" | "client"
+      booking_status: "pending" | "confirmed" | "cancelled" | "done"
+      campaign_channel: "whatsapp" | "email"
+      plan_tier: "basic" | "intermediate" | "premium"
     }
-    CompositeTypes: {
-      [_ in never]: never
-    }
   }
 }
-
-type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">
-
-type DefaultSchema = DatabaseWithoutInternals[Extract<keyof Database, "public">]
-
-export type Tables<
-  DefaultSchemaTableNameOrOptions extends
-    | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
-    | { schema: keyof DatabaseWithoutInternals },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals
-  }
-    ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
-        DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
-    : never = never,
-> = DefaultSchemaTableNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals
-}
-  ? (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
-      DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
-      Row: infer R
-    }
-    ? R
-    : never
-  : DefaultSchemaTableNameOrOptions extends keyof (DefaultSchema["Tables"] &
-        DefaultSchema["Views"])
-    ? (DefaultSchema["Tables"] &
-        DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
-        Row: infer R
-      }
-      ? R
-      : never
-    : never
-
-export type TablesInsert<
-  DefaultSchemaTableNameOrOptions extends
-    | keyof DefaultSchema["Tables"]
-    | { schema: keyof DatabaseWithoutInternals },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals
-  }
-    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
-    : never = never,
-> = DefaultSchemaTableNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals
-}
-  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Insert: infer I
-    }
-    ? I
-    : never
-  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
-    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
-        Insert: infer I
-      }
-      ? I
-      : never
-    : never
-
-export type TablesUpdate<
-  DefaultSchemaTableNameOrOptions extends
-    | keyof DefaultSchema["Tables"]
-    | { schema: keyof DatabaseWithoutInternals },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals
-  }
-    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
-    : never = never,
-> = DefaultSchemaTableNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals
-}
-  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Update: infer U
-    }
-    ? U
-    : never
-  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
-    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
-        Update: infer U
-      }
-      ? U
-      : never
-    : never
-
-export type Enums<
-  DefaultSchemaEnumNameOrOptions extends
-    | keyof DefaultSchema["Enums"]
-    | { schema: keyof DatabaseWithoutInternals },
-  EnumName extends DefaultSchemaEnumNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals
-  }
-    ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
-    : never = never,
-> = DefaultSchemaEnumNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals
-}
-  ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
-  : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
-    ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
-    : never
-
-export type CompositeTypes<
-  PublicCompositeTypeNameOrOptions extends
-    | keyof DefaultSchema["CompositeTypes"]
-    | { schema: keyof DatabaseWithoutInternals },
-  CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals
-  }
-    ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
-    : never = never,
-> = PublicCompositeTypeNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals
-}
-  ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
-  : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
-    ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
-    : never
-
-export const Constants = {
-  public: {
-    Enums: {},
-  },
-} as const
