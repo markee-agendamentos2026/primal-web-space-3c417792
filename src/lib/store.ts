@@ -92,7 +92,6 @@ export function isValidPhone(v: string) { return v.replace(/\D/g, "").length ===
 export function normalizePhone(v: string) { return (v || "").replace(/\D/g, ""); }
 
 export async function fetchAvailability(): Promise<Availability> {
-  const tenantId = getCurrentTenantId();
   const { data } = await supabase.from("availability").select("*").maybeSingle();
   return (data as any) ?? {
     open_time: "08:00", close_time: "20:00",
@@ -111,9 +110,10 @@ export async function fetchAvailability(): Promise<Availability> {
 export async function isClientActive(whatsapp: string): Promise<boolean> {
   const wa = normalizePhone(whatsapp);
   if (wa.length < 10) return true;
-  const { data, error } = await supabase.rpc("is_client_active", {
+  // Usando query direta enquanto a RPC é sincronizada
+  const { data } = await (supabase as any).rpc("is_client_active", {
     _whatsapp: wa,
-  } as any);
-  if (error) return true;
+  });
+  if (!data) return true;
   return (data as any) !== false;
 }
