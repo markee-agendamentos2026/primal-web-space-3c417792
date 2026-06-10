@@ -52,13 +52,29 @@ function MarkeeHome() {
       {/* Navigation */}
       <nav className="fixed top-0 z-50 w-full border-b border-white/[0.05] bg-black/40 backdrop-blur-2xl">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
-          <div className="flex items-center gap-3 group cursor-pointer">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary shadow-[0_0_20px_rgba(var(--primary-rgb),0.3)] transition-transform group-hover:scale-105">
-              <span className="text-xl font-black text-black italic">M</span>
+          <div className="flex items-center gap-4 group cursor-pointer">
+            <div className="relative flex h-12 w-12 items-center justify-center">
+              {/* AI Core Pulse */}
+              <div className="absolute inset-0 rounded-full bg-primary/40 blur-md animate-pulse" />
+              <div className="absolute inset-1 rounded-full bg-gradient-to-tr from-primary via-white to-primary animate-[spin_3s_linear_infinite] opacity-50" />
+              
+              {/* Inner Circle (The "Mind") */}
+              <div className="relative flex h-9 w-9 items-center justify-center rounded-full bg-black border border-white/20 shadow-[0_0_15px_rgba(var(--primary-rgb),0.5)] overflow-hidden">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--primary)_0%,transparent_70%)] opacity-50" />
+                <span className="text-xl font-black text-primary italic z-10">M</span>
+              </div>
+              
+              {/* Outer Power Ring */}
+              <div className="absolute -inset-1 rounded-full border border-primary/20 scale-110 animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]" />
             </div>
-            <span className="text-2xl font-bold tracking-tight bg-gradient-to-r from-white via-white/80 to-white bg-clip-text text-transparent italic">
-              Markee Agendamentos
-            </span>
+            <div className="flex flex-col">
+              <span className="text-xl font-black tracking-tighter bg-gradient-to-r from-white via-white/90 to-primary/80 bg-clip-text text-transparent italic leading-none">
+                Markee
+              </span>
+              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary/60 leading-none mt-1">
+                AI Scheduling
+              </span>
+            </div>
           </div>
         </div>
       </nav>
@@ -317,14 +333,17 @@ function MarkeeHome() {
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
             <div className="col-span-2">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary shadow-lg">
-                  <span className="text-xl font-black text-black italic">M</span>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="relative flex h-10 w-10 items-center justify-center">
+                  <div className="absolute inset-0 rounded-full bg-primary/30 blur-sm animate-pulse" />
+                  <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-black border border-white/20">
+                    <span className="text-sm font-black text-primary italic">M</span>
+                  </div>
                 </div>
-                <span className="text-2xl font-bold italic tracking-tight">Markee</span>
+                <span className="text-2xl font-black italic tracking-tight">Markee AI</span>
               </div>
               <p className="text-neutral-500 max-w-xs text-lg font-light leading-relaxed">
-                A plataforma de agendamentos premium feita para os negócios do futuro.
+                A inteligência artificial definitiva para agendamentos premium e gestão de fluxo.
               </p>
             </div>
             <div>
