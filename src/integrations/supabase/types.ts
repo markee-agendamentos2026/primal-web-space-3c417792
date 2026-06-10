@@ -88,6 +88,7 @@ export type Database = {
       }
       bookings: {
         Row: {
+          business_id: string | null
           client_name: string
           client_name_snapshot: string | null
           created_at: string
@@ -106,6 +107,7 @@ export type Database = {
           whatsapp: string
         }
         Insert: {
+          business_id?: string | null
           client_name: string
           client_name_snapshot?: string | null
           created_at?: string
@@ -124,6 +126,7 @@ export type Database = {
           whatsapp: string
         }
         Update: {
+          business_id?: string | null
           client_name?: string
           client_name_snapshot?: string | null
           created_at?: string
@@ -143,6 +146,13 @@ export type Database = {
         }
         Relationships: [
           {
+            foreignKeyName: "bookings_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "bookings_professional_id_fkey"
             columns: ["professional_id"]
             isOneToOne: false
@@ -158,9 +168,88 @@ export type Database = {
           },
         ]
       }
+      businesses: {
+        Row: {
+          active: boolean | null
+          created_at: string | null
+          id: string
+          name: string
+          owner_id: string | null
+          primary_color: string | null
+          secondary_color: string | null
+          segment: string | null
+          slug: string
+          updated_at: string | null
+        }
+        Insert: {
+          active?: boolean | null
+          created_at?: string | null
+          id?: string
+          name: string
+          owner_id?: string | null
+          primary_color?: string | null
+          secondary_color?: string | null
+          segment?: string | null
+          slug: string
+          updated_at?: string | null
+        }
+        Update: {
+          active?: boolean | null
+          created_at?: string | null
+          id?: string
+          name?: string
+          owner_id?: string | null
+          primary_color?: string | null
+          secondary_color?: string | null
+          segment?: string | null
+          slug?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      onboarding_requests: {
+        Row: {
+          business_name: string | null
+          created_at: string | null
+          email: string
+          full_name: string
+          id: string
+          metadata: Json | null
+          phone: string | null
+          segment: string | null
+          status: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          business_name?: string | null
+          created_at?: string | null
+          email: string
+          full_name: string
+          id?: string
+          metadata?: Json | null
+          phone?: string | null
+          segment?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          business_name?: string | null
+          created_at?: string | null
+          email?: string
+          full_name?: string
+          id?: string
+          metadata?: Json | null
+          phone?: string | null
+          segment?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       professionals: {
         Row: {
           active: boolean
+          business_id: string | null
           created_at: string
           id: string
           name: string
@@ -171,6 +260,7 @@ export type Database = {
         }
         Insert: {
           active?: boolean
+          business_id?: string | null
           created_at?: string
           id?: string
           name: string
@@ -181,6 +271,7 @@ export type Database = {
         }
         Update: {
           active?: boolean
+          business_id?: string | null
           created_at?: string
           id?: string
           name?: string
@@ -189,11 +280,20 @@ export type Database = {
           sort_order?: number
           user_id?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "professionals_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       profiles: {
         Row: {
           active: boolean
+          business_id: string | null
           created_at: string
           email: string | null
           id: string
@@ -202,6 +302,7 @@ export type Database = {
         }
         Insert: {
           active?: boolean
+          business_id?: string | null
           created_at?: string
           email?: string | null
           id: string
@@ -210,13 +311,22 @@ export type Database = {
         }
         Update: {
           active?: boolean
+          business_id?: string | null
           created_at?: string
           email?: string | null
           id?: string
           name?: string | null
           whatsapp?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "profiles_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       recurrence_campaigns: {
         Row: {
@@ -299,6 +409,7 @@ export type Database = {
       services: {
         Row: {
           active: boolean
+          business_id: string | null
           created_at: string
           description: string | null
           duration_min: number
@@ -314,6 +425,7 @@ export type Database = {
         }
         Insert: {
           active?: boolean
+          business_id?: string | null
           created_at?: string
           description?: string | null
           duration_min: number
@@ -329,6 +441,7 @@ export type Database = {
         }
         Update: {
           active?: boolean
+          business_id?: string | null
           created_at?: string
           description?: string | null
           duration_min?: number
@@ -342,7 +455,15 @@ export type Database = {
           promo_starts_at?: string | null
           sort_order?: number
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "services_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       user_roles: {
         Row: {
@@ -378,6 +499,7 @@ export type Database = {
       get_bookings_by_whatsapp: {
         Args: { _whatsapp: string }
         Returns: {
+          business_id: string | null
           client_name: string
           client_name_snapshot: string | null
           created_at: string

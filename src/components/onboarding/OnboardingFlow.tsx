@@ -3,13 +3,17 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ChevronRight, ChevronLeft, Check, Palette } from "lucide-react";
+import { ChevronRight, ChevronLeft, Check, Loader2 } from "lucide-react";
 import { useNavigate } from "@tanstack/react-router";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 type Step = "personal" | "business" | "branding" | "summary" | "status";
 
 export function OnboardingFlow() {
   const [step, setStep] = useState<Step>("personal");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
   const navigate = useNavigate();
   
   const [formData, setFormData] = useState({
@@ -23,6 +27,37 @@ export function OnboardingFlow() {
   });
 
   const nextStep = (next: Step) => setStep(next);
+
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+    try {
+      const { error } = await supabase.from("onboarding_requests").insert([
+        {
+          full_name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          business_name: formData.businessName,
+          segment: formData.segment,
+          metadata: {
+            primaryColor: formData.primaryColor,
+            secondaryColor: formData.secondaryColor,
+          },
+        },
+      ]);
+
+      if (error) throw error;
+
+      setStep("status");
+    } catch (error: any) {
+      toast({
+        title: "Erro ao salvar cadastro",
+        description: error.message || "Ocorreu um erro inesperado.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const containerVariants = {
     hidden: { opacity: 0, x: 20 },
