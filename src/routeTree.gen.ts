@@ -10,33 +10,68 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BMarkeeIndexRouteImport } from './routes/b/markee/index'
+import { Route as BMarkeeTrackingRouteImport } from './routes/b/markee/tracking'
+import { Route as BMarkeeOnboardingRouteImport } from './routes/b/markee/onboarding'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BMarkeeIndexRoute = BMarkeeIndexRouteImport.update({
+  id: '/b/markee/',
+  path: '/b/markee/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BMarkeeTrackingRoute = BMarkeeTrackingRouteImport.update({
+  id: '/b/markee/tracking',
+  path: '/b/markee/tracking',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BMarkeeOnboardingRoute = BMarkeeOnboardingRouteImport.update({
+  id: '/b/markee/onboarding',
+  path: '/b/markee/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/b/markee/onboarding': typeof BMarkeeOnboardingRoute
+  '/b/markee/tracking': typeof BMarkeeTrackingRoute
+  '/b/markee/': typeof BMarkeeIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/b/markee/onboarding': typeof BMarkeeOnboardingRoute
+  '/b/markee/tracking': typeof BMarkeeTrackingRoute
+  '/b/markee': typeof BMarkeeIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/b/markee/onboarding': typeof BMarkeeOnboardingRoute
+  '/b/markee/tracking': typeof BMarkeeTrackingRoute
+  '/b/markee/': typeof BMarkeeIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/b/markee/onboarding' | '/b/markee/tracking' | '/b/markee/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/b/markee/onboarding' | '/b/markee/tracking' | '/b/markee'
+  id:
+    | '__root__'
+    | '/'
+    | '/b/markee/onboarding'
+    | '/b/markee/tracking'
+    | '/b/markee/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BMarkeeOnboardingRoute: typeof BMarkeeOnboardingRoute
+  BMarkeeTrackingRoute: typeof BMarkeeTrackingRoute
+  BMarkeeIndexRoute: typeof BMarkeeIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +83,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/b/markee/': {
+      id: '/b/markee/'
+      path: '/b/markee'
+      fullPath: '/b/markee/'
+      preLoaderRoute: typeof BMarkeeIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/b/markee/tracking': {
+      id: '/b/markee/tracking'
+      path: '/b/markee/tracking'
+      fullPath: '/b/markee/tracking'
+      preLoaderRoute: typeof BMarkeeTrackingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/b/markee/onboarding': {
+      id: '/b/markee/onboarding'
+      path: '/b/markee/onboarding'
+      fullPath: '/b/markee/onboarding'
+      preLoaderRoute: typeof BMarkeeOnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BMarkeeOnboardingRoute: BMarkeeOnboardingRoute,
+  BMarkeeTrackingRoute: BMarkeeTrackingRoute,
+  BMarkeeIndexRoute: BMarkeeIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
