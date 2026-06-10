@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "markee-agendamentos" },
+      { name: "description", content: "Markee-agendamentos is a web application for creating and managing appointments." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "markee-agendamentos" },
+      { property: "og:description", content: "Markee-agendamentos is a web application for creating and managing appointments." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "markee-agendamentos" },
+      { name: "twitter:description", content: "Markee-agendamentos is a web application for creating and managing appointments." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/a3501052-9977-4b47-ac99-49aeab629837/id-preview-eb6bfacd--ce8800c5-e6f6-441e-aa8d-7c61135da486.lovable.app-1781106135141.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/a3501052-9977-4b47-ac99-49aeab629837/id-preview-eb6bfacd--ce8800c5-e6f6-441e-aa8d-7c61135da486.lovable.app-1781106135141.png" },
     ],
     links: [
       {
