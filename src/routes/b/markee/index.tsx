@@ -113,85 +113,87 @@ function MarkeeHome() {
 
         <section className="px-6 relative">
           <div className="mx-auto max-w-7xl">
-            <div className="flex flex-col items-center gap-16 lg:flex-row lg:justify-between lg:text-left">
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-12 text-center lg:text-left">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
-                className="relative z-10 w-full lg:max-w-2xl text-center lg:text-left"
+                className="relative z-10 w-full lg:max-w-2xl"
               >
-                <h1 className="text-7xl font-black tracking-tight leading-[1] sm:text-8xl lg:text-[7rem] xl:text-[8rem]">
+                <h1 className="text-6xl font-black tracking-tight leading-[1] sm:text-7xl lg:text-[6rem] xl:text-[7rem]">
                   A Arte de <br />
                   <span className="relative inline-block mt-4">
                     <span className="bg-gradient-to-r from-primary via-white to-primary bg-[length:200%_auto] animate-gradient-text bg-clip-text text-transparent italic">
                       Agendar
                     </span>
-                    <motion.div 
-                      className="absolute -bottom-2 left-0 h-2 bg-primary/50 rounded-full"
-                      initial={{ width: 0 }}
-                      animate={{ width: '100%' }}
-                      transition={{ delay: 1, duration: 1 }}
-                    />
                   </span>
                 </h1>
                 
-                <p className="mt-12 mx-auto lg:mx-0 max-w-2xl text-xl text-neutral-400 leading-relaxed font-light sm:text-2xl">
+                <p className="mt-8 mx-auto lg:mx-0 max-w-xl text-lg text-neutral-400 leading-relaxed font-light sm:text-xl">
                   Transforme seu negócio com uma plataforma que respira sofisticação. 
                   Sincronização impecável, design intuitivo e a exclusividade que sua marca merece.
                 </p>
                 
-                <div className="mt-16 flex flex-col items-center gap-8 sm:flex-row sm:justify-center lg:justify-start">
+                <div className="mt-12 flex flex-col items-center gap-6 sm:flex-row sm:justify-center lg:justify-start">
                   <Button
                     size="lg"
-                    className="h-20 w-full sm:w-auto rounded-3xl bg-primary px-12 text-xl font-black text-black hover:scale-[1.05] active:scale-[0.95] transition-all shadow-[0_20px_50px_-15px_rgba(var(--primary-rgb),0.4)] group overflow-hidden relative"
+                    className="h-16 w-full sm:w-auto rounded-2xl bg-primary px-10 text-lg font-black text-black hover:scale-[1.05] active:scale-[0.95] transition-all shadow-[0_20px_40px_-10px_rgba(var(--primary-rgb),0.5)] group overflow-hidden relative"
                     onClick={handleStart}
                   >
                     <span className="relative z-10 flex items-center gap-2">
                       Começar grátis por 7 dias
-                      <ArrowRight className="h-6 w-6 transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                     </span>
-                    <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity" />
                   </Button>
                   
                   <button
-                    className="group flex items-center gap-4 text-white hover:text-primary transition-colors font-bold text-lg"
+                    className="group flex items-center gap-3 text-white hover:text-primary transition-colors font-bold text-base"
                     onClick={() => navigate({ to: "/b/markee/tracking" })}
                   >
-                    <div className="flex h-16 w-16 items-center justify-center rounded-3xl border border-white/10 bg-white/5 transition-all group-hover:border-primary/50 group-hover:bg-primary/10">
-                      <Play className="h-7 w-7 fill-current ml-1" />
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 transition-all group-hover:border-primary/50 group-hover:bg-primary/10">
+                      <Play className="h-5 w-5 fill-current ml-0.5" />
                     </div>
                     <span>Acompanhar chamado</span>
                   </button>
                 </div>
-
-                <div className="mt-20 mx-auto lg:mx-0 max-w-4xl flex items-center justify-center lg:justify-start gap-12 grayscale opacity-30 hover:grayscale-0 hover:opacity-80 transition-all duration-1000 overflow-hidden py-6 border-y border-white/[0.03]">
-                  <Shield className="h-10 w-10" />
-                  <MousePointer2 className="h-10 w-10" />
-                  <div className="h-6 w-px bg-white/10" />
-                  <span className="text-sm font-bold tracking-[0.3em] uppercase">Trusted by Premium Brands</span>
-                </div>
               </motion.div>
 
+              {/* Sidebar Cards like in the print */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="hidden lg:block relative"
+                className="w-full lg:max-w-md space-y-4"
               >
-                <div className="relative z-10 space-y-6 text-right">
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl max-w-md ml-auto">
-                    <p className="text-3xl font-medium italic text-neutral-200">
-                      "Eficiência que se traduz em faturamento real."
-                    </p>
+                <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition-all hover:bg-white/[0.08] hover:border-primary/20">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+                    <span className="text-[10px] font-black uppercase tracking-widest text-primary">Próximo Agendamento</span>
                   </div>
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl max-w-sm ml-auto mr-12">
-                    <p className="text-xl font-medium text-neutral-300">
-                      Design que reflete o valor da sua marca.
-                    </p>
+                  <p className="text-2xl font-black italic text-white mb-1">Corte & Barba</p>
+                  <p className="text-neutral-400 font-light italic">Hoje às 14:30 - Lucas Almeida</p>
+                </div>
+
+                <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-primary/10 to-transparent p-6 backdrop-blur-xl">
+                  <div className="flex justify-between items-center mb-4">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-neutral-400">Desempenho Semanal</span>
+                    <Zap className="h-4 w-4 text-primary" />
+                  </div>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-4xl font-black italic text-white">+84%</span>
+                    <span className="text-xs text-primary font-bold">↑ Em relação ao mês anterior</span>
                   </div>
                 </div>
-                {/* Decorative element background behind the text */}
-                <div className="absolute -inset-10 bg-primary/5 blur-[100px] -z-10 rounded-full" />
+
+                <div className="rounded-3xl border border-white/10 bg-black/40 p-6 backdrop-blur-xl">
+                  <p className="text-lg font-light italic text-neutral-300">
+                    "A interface é tão fluida que nossos clientes elogiam o agendamento tanto quanto o serviço."
+                  </p>
+                  <div className="mt-4 flex items-center gap-3">
+                    <div className="h-8 w-8 rounded-full bg-gradient-to-tr from-primary to-blue-500" />
+                    <span className="text-sm font-bold text-white">Bruno Siqueira</span>
+                  </div>
+                </div>
               </motion.div>
             </div>
           </div>
