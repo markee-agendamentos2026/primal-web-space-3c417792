@@ -53,26 +53,53 @@ function MarkeeHome() {
       <nav className="fixed top-0 z-50 w-full border-b border-white/[0.05] bg-black/40 backdrop-blur-2xl">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
           <div className="flex items-center gap-4 group cursor-pointer">
-            <div className="relative flex h-12 w-12 items-center justify-center">
-              {/* AI Core Pulse */}
-              <div className="absolute inset-0 rounded-full bg-primary/40 blur-md animate-pulse" />
-              <div className="absolute inset-1 rounded-full bg-gradient-to-tr from-primary via-white to-primary animate-[spin_3s_linear_infinite] opacity-50" />
+            <div className="relative flex h-14 w-14 items-center justify-center">
+              {/* Outer Life Ring - Rotating Power */}
+              <div className="absolute inset-0 rounded-full border-2 border-primary/10" />
+              <motion.div 
+                className="absolute inset-0 rounded-full border-t-2 border-r-2 border-primary shadow-[0_0_15px_rgba(var(--primary-rgb),0.5)]"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+              />
+              <motion.div 
+                className="absolute inset-2 rounded-full border-b-2 border-l-2 border-blue-400/30"
+                animate={{ rotate: -360 }}
+                transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+              />
               
-              {/* Inner Circle (The "Mind") */}
-              <div className="relative flex h-9 w-9 items-center justify-center rounded-full bg-black border border-white/20 shadow-[0_0_15px_rgba(var(--primary-rgb),0.5)] overflow-hidden">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--primary)_0%,transparent_70%)] opacity-50" />
-                <span className="text-xl font-black text-primary italic z-10">M</span>
+              {/* The AI Face / Core */}
+              <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-black border border-white/10 overflow-hidden shadow-inner">
+                {/* AI "Eyes" or Face features */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--primary)_0%,transparent_70%)] opacity-30" />
+                
+                {/* Visualizing a Face */}
+                <div className="flex flex-col items-center gap-1.5 z-10">
+                  <div className="flex gap-2">
+                    <motion.div 
+                      className="h-1 w-2.5 rounded-full bg-primary"
+                      animate={{ scaleY: [1, 0.1, 1], opacity: [1, 0.5, 1] }}
+                      transition={{ duration: 3, repeat: Infinity, times: [0, 0.1, 0.2] }}
+                    />
+                    <motion.div 
+                      className="h-1 w-2.5 rounded-full bg-primary"
+                      animate={{ scaleY: [1, 0.1, 1], opacity: [1, 0.5, 1] }}
+                      transition={{ duration: 3, repeat: Infinity, times: [0, 0.1, 0.2] }}
+                    />
+                  </div>
+                  <motion.div 
+                    className="h-0.5 w-4 rounded-full bg-primary/60"
+                    animate={{ width: ["1rem", "1.2rem", "1rem"] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                </div>
               </div>
-              
-              {/* Outer Power Ring */}
-              <div className="absolute -inset-1 rounded-full border border-primary/20 scale-110 animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-black tracking-tighter bg-gradient-to-r from-white via-white/90 to-primary/80 bg-clip-text text-transparent italic leading-none">
+              <span className="text-xl font-black tracking-tighter bg-gradient-to-r from-white via-white/90 to-primary bg-clip-text text-transparent italic leading-none">
                 Markee
               </span>
-              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary/60 leading-none mt-1">
-                AI Scheduling
+              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary/80 leading-none mt-1">
+                Living AI Agent
               </span>
             </div>
           </div>
